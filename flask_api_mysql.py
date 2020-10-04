@@ -1,16 +1,29 @@
 from flask import Flask, request, jsonify
-import itertools
 import mysql_lib 
 app = Flask(__name__)
 
-def get_all():
+# Select ALL
+@app.route('/all', methods=['POST','GET']) 
+def all():
+    result = db_get_all()
+    return jsonify(result)
+
+def db_get_all():
     mysql_lib.connect()
     sql = "select * from source"
     data = mysql_lib.select(sql)
     mysql_lib.close()
     return data
 
-def get_by_id(id):
+# Select By ID
+@app.route('/by_id', methods=['POST','GET']) 
+def by_id():
+    data = request.args
+    id = data["id"]
+    result = db_get_by_id(id)
+    return jsonify(result)
+
+def db_get_by_id(id):
     mysql_lib.connect()
     sql = "select * from source where id={}".format(id)
     print(sql)
@@ -18,17 +31,52 @@ def get_by_id(id):
     mysql_lib.close()
     return data
 
-@app.route('/all', methods=['POST','GET']) 
-def all():
-    result = get_all()
+# Insert
+@app.route('/insert', methods=['POST','GET']) 
+def insert():
+    data = request.args
+    result = db_insert(data["id"],data["name"],data["age"],data["gender"])
     return jsonify(result)
 
-@app.route('/by_id', methods=['POST','GET']) 
-def by_id():
+def db_insert(id,name,age,gender):
+    mysql_lib.connect()
+    insert_sql = "insert into source values('{}','{}','{}','{}')".format(id,name,age,gender)
+    print(insert_sql)
+    data = mysql_lib.executeSQL(insert_sql)
+    mysql_lib.close()
+    return data
+
+# Update
+@app.route('/update', methods=['POST','GET']) 
+def update():
     data = request.args
-    id = data["id"]
-    result = get_by_id(id)
+    result = db_update(data["id"],data["name"])
     return jsonify(result)
+
+def db_update(id,name):
+    mysql_lib.connect()
+    sql = "update source set name='{}' where id ={}".format(name,id)
+    print(sql)
+    data = mysql_lib.executeSQL(sql)
+    mysql_lib.close()
+    return data
+
+# Delete
+@app.route('/delete', methods=['POST','GET']) 
+def delete():
+    data = request.args
+    result = db_delete(data["id"])
+    return jsonify(result)
+
+def db_delete(id):
+    mysql_lib.connect()
+    sql = "delete from source where id ={}".format(id)
+    print(sql)
+    data = mysql_lib.executeSQL(sql)
+    mysql_lib.close()
+    return data
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=80, host='0.0.0.0')
