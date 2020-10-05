@@ -7,6 +7,11 @@ from countries.models import Countries
 from countries.serializers import CountriesSerializer
 from rest_framework.decorators import api_view
 
+from django.http import HttpResponse
+
+def index(request):
+    return HttpResponse("<H1>Python API Class by RAOT!</H1>")
+
 @api_view(['GET','POST'])
 def countries_list(request):
     if request.method == 'GET':
