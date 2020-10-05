@@ -3,7 +3,7 @@ import mysql_lib
 app = Flask(__name__)
 
 # Select ALL
-@app.route('/all', methods=['POST','GET']) 
+@app.route('/all', methods=['GET']) 
 def all():
     result = db_get_all()
     return jsonify(result)
@@ -16,7 +16,7 @@ def db_get_all():
     return data
 
 # Select By ID
-@app.route('/by_id', methods=['POST','GET']) 
+@app.route('/by_id', methods=['GET']) 
 def by_id():
     data = request.args
     id = data["id"]
@@ -32,7 +32,7 @@ def db_get_by_id(id):
     return data
 
 # Insert
-@app.route('/insert', methods=['POST','GET']) 
+@app.route('/insert', methods=['POST']) 
 def insert():
     data = request.args
     result = db_insert(data["id"],data["name"],data["age"],data["gender"])
@@ -47,7 +47,7 @@ def db_insert(id,name,age,gender):
     return data
 
 # Update
-@app.route('/update', methods=['POST','GET']) 
+@app.route('/update', methods=['PUT']) 
 def update():
     data = request.args
     result = db_update(data["id"],data["name"])
@@ -62,7 +62,7 @@ def db_update(id,name):
     return data
 
 # Delete
-@app.route('/delete', methods=['POST','GET']) 
+@app.route('/delete', methods=['DELETE']) 
 def delete():
     data = request.args
     result = db_delete(data["id"])
