@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'countries.apps.CountriesConfig',
-    'news.apps.NewsConfig',
     'corsheaders'
 ]
 

@@ -9,7 +9,6 @@ def foo():
     print(type(data))
     books = ['Harry Potter','One POiece','Doraemon']
     tel = {'office':'025051122','home':'022798129','mobile':'0896622733'}
-
     data["book"] = books
     data["tel"] = tel
     print()
