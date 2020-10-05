@@ -7,11 +7,17 @@ app = Flask(__name__)
 def foo():    
     data = request.json
     print(type(data))
+    books = ['Harry Potter','One POiece','Doraemon']
+    tel = {'office':'025051122','home':'022798129','mobile':'0896622733'}
+
+    data["book"] = books
+    data["tel"] = tel
     print()
     print("------------------------- ECHO --------------------------")
     print(data)
     print("---------------------------------------------------------")
     return jsonify(data)
+
 
 
 if __name__ == '__main__':
