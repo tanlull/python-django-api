@@ -19,6 +19,7 @@ def db_get_all():
 @app.route('/by_id', methods=['GET']) 
 def by_id():
     data = request.args
+    print(request.method)
     id = data["id"]
     result = db_get_by_id(id)
     return jsonify(result)
