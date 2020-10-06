@@ -5,7 +5,7 @@ def updateTable(id, newid):
         conn = mysql.connect(user='root', password='toor',
                              host='127.0.0.1', database='api')
         cursor = conn.cursor()
-        sql_update = "Update source set id = %s where id = %s"""
+        sql_update = "Update source set id = %s where id = %s"
         cursor.execute(sql_update, (newid, id))
         conn.commit()
         count = cursor.rowcount
@@ -17,6 +17,6 @@ def updateTable(id, newid):
         if (conn):
             cursor.close()
             conn.close()
-            print("PostgreSQL conn is closed")
+            print("Oracle conn is closed")
 
 updateTable(5, 10)

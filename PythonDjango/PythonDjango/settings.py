@@ -77,17 +77,45 @@ WSGI_APPLICATION = 'PythonDjango.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'countriesdb',
-        'USER':'root',
-        'PASSWORD':'toor',
-        'HOST':'localhost',
-        'PORT': '3306'
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'countriesdb',
+#         'USER':'root',
+#         'PASSWORD':'toor',
+#         'HOST':'localhost',
+#         'PORT': '3306'
+#     }
+# }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.oracle',
+#         'NAME': (
+#             '(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=dboda-scan.rubber.co.th)(PORT=1521))'
+#             '(CONNECT_DATA=(SERVICE_NAME=testrac)))'
+#         ),
+#         'USER': 'train00',
+#         'PASSWORD': 'train00',
+#     }
+# }
+
+# DATABASES = {
+# 'default': {
+#     'ENGINE':   'django.db.backends.oracle',
+#     'NAME':     'dboda-scan.rubber.co.th/testrac',
+#     'USER':     'train00',
+#     'PASSWORD': 'train00',
+# }}
+
+
+DATABASES = {
+'default': {
+    'ENGINE':   'django.db.backends.oracle',
+    'NAME':     'localhost/orcl',
+    'USER':     'train00',
+    'PASSWORD': 'train00',
+}}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
